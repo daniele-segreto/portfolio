@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Science Lab | Scienza Aperta e Partecipata</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --surface-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            /* Palette Ufficiale Ispirata a Zooniverse (Teal / Ottanio) */
+            --primary-accent: #05ad92;
+            --primary-hover: #005d6e;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Navbar Chiara e Pulita */
+        .navbar-custom {
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            height: 75px;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-main) !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-accent);
+        }
+
+        .nav-link {
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-accent) !important;
+        }
+
+        /* Correzione Menu Responsive Mobile */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: #ffffff;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+
+            .navbar-nav {
+                align-items: flex-start !important;
+                gap: 1rem !important;
+            }
+
+            .nav-link {
+                font-size: 1.05rem;
+                padding: 0.5rem 0;
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid var(--border-color);
+            }
+        }
+
+        /* Sezione Hero con Immagine in Evidenza */
+        .hero-section {
+            padding: 80px 0;
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .badge-zooniverse {
+            background-color: rgba(5, 173, 146, 0.1);
+            color: var(--primary-accent);
+            border: 1px solid rgba(5, 173, 146, 0.2);
+        }
+
+        .hero-image-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sezione Partner Scorrevole (Ticker) */
+        .partners-ticker-section {
+            padding: 2rem 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .ticker-container {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-container::before, .ticker-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .ticker-container::before {
+            left: 0;
+            background: linear-gradient(to right, #ffffff, transparent);
+        }
+
+        .ticker-container::after {
+            right: 0;
+            background: linear-gradient(to left, #ffffff, transparent);
+        }
+
+        .ticker-track {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            animation: scrollPartners 25s linear infinite;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        .partner-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .partner-item:hover {
+            color: var(--primary-hover);
+            border-color: var(--primary-accent);
+            transform: translateY(-2px);
+        }
+
+        @keyframes scrollPartners {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1.25rem)); }
+        }
+
+        /* Card e Sezioni */
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .card-custom {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            height: 100%;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: var(--primary-accent);
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background-color: rgba(5, 173, 146, 0.1);
+            color: var(--primary-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Terminale Scienza su Sfondo Nero */
+        .terminal-window {
+            background-color: #090d16;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        .terminal-header {
+            background-color: #0f172a;
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ef4444; }
+        .dot-yellow { background-color: #f59e0b; }
+        .dot-green { background-color: #10b981; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            color: #38bdf8;
+            font-size: 0.9rem;
+            min-height: 140px;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            width: 8px;
+            height: 1.1rem;
+            vertical-align: middle;
+            animation: blinkTerminal 0.8s infinite;
+        }
+
+        @keyframes blinkTerminal {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Bottoni */
+        .btn-primary-custom {
+            background-color: var(--primary-accent);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            border: none;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: var(--primary-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            color: var(--text-main);
+            font-weight: 600;
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--text-main);
+            background-color: var(--surface-color);
+            color: var(--text-main);
+        }
+
+        /* Footer */
+        .footer-custom {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <i class="fa-solid fa-atom text-teal" style="color: var(--primary-accent);"></i> Citizen<span>Science</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navContent">
+                <ul class="navbar-nav gap-4 align-items-center">
+                    <li><a class="nav-link" href="#hero">Home</a></li>
+                    <li><a class="nav-link" href="#projects">Aree di Ricerca</a></li>
+                    <li><a class="nav-link" href="#methodology">Metodo</a></li>
+                    <li><a class="nav-link" href="#contact">Contatti</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sezione Hero -->
+    <header id="hero" class="hero-section" style="margin-top: 75px;">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge badge-zooniverse px-3 py-2 rounded-pill fw-semibold mb-3">Scienza Aperta & Collaborativa</span>
+                    <h1 class="display-5 fw-bold mb-4">Esplorazione e analisi dati al servizio della ricerca globale</h1>
+                    <p class="lead text-muted mb-4">Un hub dedicato alla classificazione di dati scientifici, astrofisica e monitoraggio ambientale attraverso il contributo attivo della cittadinanza.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#projects" class="btn-primary-custom">Scopri i Progetti <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        <a href="#methodology" class="btn-outline-custom">Approfondisci</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop" alt="Citizen Science Space Research">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sezione Partner Scorrevole (Ticker con Link Reali) -->
+    <section class="partners-ticker-section">
+        <div class="ticker-container">
+            <div class="ticker-track">
+                <a href="https://science.nasa.gov/citizenscience/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-rocket" style="color: var(--primary-accent);"></i> NASA Citizen Science</a>
+                <a href="https://www.zooniverse.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-globe" style="color: var(--primary-accent);"></i> Zooniverse</a>
+                <a href="https://scistarter.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-flask" style="color: var(--primary-accent);"></i> SciStarter</a>
+                <a href="https://citsci.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-seedling" style="color: var(--primary-accent);"></i> CitSci.org</a>
+                <a href="https://iasc.iascspace.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-satellite" style="color: var(--primary-accent);"></i> IASC Campaign</a>
+                <a href="https://www.mappers.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-map-location-dot" style="color: var(--primary-accent);"></i> Mappers Network</a>
+                
+                <!-- Duplicazione per scorrimento continuo in loop -->
+                <a href="https://science.nasa.gov/citizenscience/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-rocket" style="color: var(--primary-accent);"></i> NASA Citizen Science</a>
+                <a href="https://www.zooniverse.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-globe" style="color: var(--primary-accent);"></i> Zooniverse</a>
+                <a href="https://scistarter.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-flask" style="color: var(--primary-accent);"></i> SciStarter</a>
+                <a href="https://citsci.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-seedling" style="color: var(--primary-accent);"></i> CitSci.org</a>
+                <a href="https://iasc.iascspace.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-satellite" style="color: var(--primary-accent);"></i> IASC Campaign</a>
+                <a href="https://www.mappers.org/" target="_blank" rel="noopener noreferrer" class="partner-item"><i class="fa-solid fa-map-location-dot" style="color: var(--primary-accent);"></i> Mappers Network</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Aree di Ricerca (Card Interattive con Link Reali) -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5" style="max-width: 600px; margin: 0 auto;">
+                <h2 class="fw-bold mb-3">Campagne di Ricerca Attive</h2>
+                <p class="text-muted">I principali filoni di analisi scientifica e classificazione supportati dalla piattaforma.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="https://science.nasa.gov/citizenscience/" target="_blank" rel="noopener noreferrer" class="card-custom">
+                        <div class="icon-box"><i class="fa-solid fa-meteor"></i></div>
+                        <h4 class="fw-bold mb-3">Space & Asteroids</h4>
+                        <p class="text-muted small mb-4">Tracciamento e classificazione di corpi minori, crateri e interazioni orbitali basate su dataset spaziali pubblici.</p>
+                        <span class="fw-semibold small" style="color: var(--primary-accent);">Esplora su NASA <i class="fa-solid fa-chevron-right ms-1"></i></span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://www.zooniverse.org/" target="_blank" rel="noopener noreferrer" class="card-custom">
+                        <div class="icon-box" style="background-color: rgba(16, 185, 129, 0.1); color: #10b981;"><i class="fa-solid fa-brain"></i></div>
+                        <h4 class="fw-bold mb-3">Neural Mapping</h4>
+                        <p class="text-muted small mb-4">Studio strutturale dei percorsi neurali per supportare la ricerca neurologica e la modellazione dei pattern biologici.</p>
+                        <span class="text-success fw-semibold small">Esplora su Zooniverse <i class="fa-solid fa-chevron-right ms-1"></i></span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://scistarter.org/" target="_blank" rel="noopener noreferrer" class="card-custom">
+                        <div class="icon-box" style="background-color: rgba(245, 158, 11, 0.1); color: #f59e0b;"><i class="fa-solid fa-cloud-sun"></i></div>
+                        <h4 class="fw-bold mb-3">Atmospheric Science</h4>
+                        <p class="text-muted small mb-4">Rilevamento e monitoraggio fotometrico di nubi nottilucenti e fenomeni mesosferici legati ai mutamenti climatici.</p>
+                        <span class="text-warning fw-semibold small">Esplora su SciStarter <i class="fa-solid fa-chevron-right ms-1"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Metodologia & Terminale -->
+    <section id="methodology" class="section-padding" style="background-color: var(--surface-color);">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Rigore e metodo nella ricerca partecipata</h2>
+                    <p class="text-muted mb-4">Ogni sessione di classificazione unisce l'intuizione umana alla precisione degli strumenti digitali, garantendo un contributo concreto alla validazione scientifica.</p>
+                    <ul class="list-unstyled text-muted d-flex flex-column gap-3">
+                        <li><i class="fa-solid fa-circle-check me-2" style="color: var(--primary-accent);"></i> Validazione incrociata dei pattern analizzati.</li>
+                        <li><i class="fa-solid fa-circle-check me-2" style="color: var(--primary-accent);"></i> Trasparenza assoluta nella raccolta dei campioni.</li>
+                        <li><i class="fa-solid fa-circle-check me-2" style="color: var(--primary-accent);"></i> Promozione della cultura scientifica accessibile.</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Terminale Scuro con Scrittura Automatica -->
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot dot-red"></div>
+                            <div class="dot dot-yellow"></div>
+                            <div class="dot dot-green"></div>
+                            <span class="ms-2 text-secondary small font-monospace">bash -- 80x24</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div id="terminal-text" style="white-space: pre-wrap;"></div><span class="terminal-cursor"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Contatti -->
+    <section id="contact" class="section-padding">
+        <div class="container text-center" style="max-width: 600px;">
+            <h2 class="fw-bold mb-3">Collabora alla Ricerca</h2>
+            <p class="text-muted mb-4">La scienza partecipata vive del contributo di ogni singolo individuo. Entra in contatto per approfondire i progetti o avviare nuove collaborazioni.</p>
+            <a href="mailto:segreto.daniele1989@libero.it" class="btn-primary-custom"><i class="fa-solid fa-envelope me-2"></i> Contatta il Responsabile</a>
+        </div>
+    </section>
+
+    <!-- Footer con Nome Personalizzato -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="fw-bold text-dark">Citizen Science Lab</span> — Promozione della ricerca aperta e partecipata.
+                </div>
+                <div class="col-md-6 text-center text-md-end text-muted">
+                    <small>&copy; 2026 Daniele Segreto. Tutti i diritti riservati.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script Scrittura Automatica Terminale -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const terminalTextElem = document.getElementById('terminal-text');
+            const lines = [
+                "$ status: node_active",
+                "$ verify_dataset --strict",
+                "> 1000 items processed successfully."
+            ];
+
+            let lineIndex = 0;
+            let charIndex = 0;
+
+            function typeTerminal() {
+                if (lineIndex < lines.length) {
+                    const currentLine = lines[lineIndex];
+                    if (charIndex < currentLine.length) {
+                        terminalTextElem.innerHTML += currentLine.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeTerminal, 45);
+                    } else {
+                        terminalTextElem.innerHTML += "\n";
+                        lineIndex++;
+                        charIndex = 0;
+                        setTimeout(typeTerminal, 400);
+                    }
+                }
+            }
+
+            typeTerminal();
+        });
+    </script>
+
+    <!-- Script Gestione Navigazione ed Evidenziazione Voce Attiva (ScrollSpy) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.navbar-custom .nav-link');
+            const sections = document.querySelectorAll('header[id], section[id]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-25% 0px -65% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>

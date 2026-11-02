@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Coders | La Scuola di Coding per i Prossimi Innovatori</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --surface-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            /* Palette Giovanile: Viola Elettrico & Verde Evidenziatore */
+            --primary-purple: #7c3aed;
+            --purple-dark: #5b21b6;
+            --purple-hover: #6d28d9;
+            --neon-lime: #84cc16;
+            --neon-lime-light: #a3e635;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+        }
+
+        /* Navbar Viola Pieno */
+        .navbar-custom {
+            background-color: var(--purple-dark);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            height: 75px;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #ffffff !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar-brand span {
+            color: var(--neon-lime-light);
+        }
+
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--neon-lime-light) !important;
+        }
+
+        /* Correzione Menu Responsive Mobile */
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background-color: var(--purple-dark);
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+            }
+
+            .navbar-nav {
+                align-items: flex-start !important;
+                gap: 1rem !important;
+            }
+
+            .nav-link {
+                font-size: 1.05rem;
+                padding: 0.5rem 0;
+                display: block;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f3e8ff 0%, #f8fafc 60%, #ecfdf5 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero-badge {
+            background-color: #a3e635;
+            color: #0f172a;
+            font-weight: 800;
+            padding: 0.4rem 1.1rem;
+            border-radius: 50rem;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 12px rgba(163, 230, 53, 0.3);
+        }
+
+        .hero-image-container {
+            width: 100%;
+            height: 380px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(124, 58, 237, 0.15);
+            border: 2px solid #ffffff;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sezioni Generali */
+        .section-padding {
+            padding: 60px 0;
+        }
+
+        /* Sezione Percorsi Formativi con Sfondo Viola Scuro */
+        .section-purple-bg {
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--primary-purple) 100%);
+            color: #ffffff;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-course {
+            background-color: #ffffff;
+            color: var(--text-main);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-course:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+            border-color: var(--neon-lime-light);
+        }
+
+        .course-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0.35rem 0.85rem;
+            border-radius: 8px;
+            width: fit-content;
+            display: inline-block;
+            margin-bottom: 0.25rem; /* Distanza dimezzata tra l'etichetta e l'icona */
+        }
+
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            background-color: #f3e8ff;
+            color: var(--primary-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Card Promo Lezione Prova Ottimizzata e Proporzionata */
+        .promo-trial-card {
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.25);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .promo-trial-img-wrapper {
+            width: 100%;
+            flex: 1;
+            min-height: 220px;
+            max-height: 260px;
+            overflow: hidden;
+            border-bottom: 3px solid var(--neon-lime-light);
+        }
+
+        .promo-trial-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .promo-trial-body {
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.25rem;
+        }
+
+        /* Card Team / Careers */
+        .careers-box {
+            background: linear-gradient(135deg, #f3e8ff 0%, #ecfdf5 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .careers-img-container {
+            width: 100%;
+            height: 100%;
+            min-height: 240px;
+        }
+
+        .careers-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Sezione con Background Verde Evidenziatore */
+        .section-lime-bg {
+            background-color: #ecfdf5;
+            border-top: 2px solid #d1fae5;
+            border-bottom: 2px solid #d1fae5;
+            padding: 60px 0;
+        }
+
+        .testimonial-card {
+            background-color: #ffffff;
+            border: 2px solid #a7f3d0;
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.05);
+        }
+
+        /* Buttons */
+        .btn-lime-custom {
+            background-color: var(--neon-lime-light);
+            color: #0f172a;
+            font-weight: 800;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 14px rgba(163, 230, 53, 0.4);
+        }
+
+        .btn-lime-custom:hover {
+            background-color: var(--neon-lime);
+            color: #0f172a;
+            transform: translateY(-2px);
+        }
+
+        .btn-purple-custom {
+            background-color: var(--primary-purple);
+            color: #ffffff;
+            font-weight: 700;
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            border: none;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-purple-custom:hover {
+            background-color: var(--purple-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            color: var(--text-main);
+            font-weight: 700;
+            padding: 0.75rem 1.75rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary-purple);
+            color: var(--primary-purple);
+            background-color: #f3e8ff;
+        }
+
+        /* Feature Box */
+        .feature-box {
+            background-color: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.15rem 1.5rem;
+        }
+
+        /* Footer Viola Pieno */
+        .footer-custom {
+            background-color: var(--purple-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px 0;
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Viola Pieno -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <i class="fa-solid fa-code" style="color: var(--neon-lime-light);"></i> NextGen<span>Coders</span>
+            </a>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navContent">
+                <ul class="navbar-nav gap-4 align-items-center">
+                    <li><a class="nav-link active" href="#hero">Home</a></li>
+                    <li><a class="nav-link" href="#courses">Percorsi</a></li>
+                    <li><a class="nav-link" href="#method">Metodo</a></li>
+                    <li><a class="nav-link" href="#success">Storie</a></li>
+                    <li><a class="nav-link" href="#faq">FAQ</a></li>
+                    <li><a class="nav-link" href="#careers">Team</a></li>
+                    <li><a class="nav-link" href="#contact">Iscrizioni</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sezione Hero -->
+    <header id="hero" class="hero-section" style="margin-top: 75px;">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="hero-badge"><i class="fa-solid fa-rocket me-2"></i> Il Futuro nelle Tue Mani</span>
+                    <h1 class="display-5 fw-extrabold mb-4" style="letter-spacing: -0.02em;">Prepariamo le prossime generazioni a creare la tecnologia di domani</h1>
+                    <p class="lead text-muted mb-4">Percorsi pratici, creativi ed entusiasmanti di programmazione, pensiero computazionale e sviluppo web per i futuri innovatori.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#courses" class="btn-lime-custom">Scopri i Corsi <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        <a href="#method" class="btn-outline-custom">Il Nostro Metodo</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container">
+                        <img src="./img/hero_code_school.jpg" alt="Ragazzi che programmano insieme">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sezione Corsi / Percorsi (Sfondo Viola Scuro) -->
+    <section id="courses" class="section-padding section-purple-bg">
+        <div class="container">
+            <div class="text-center mb-5" style="max-width: 600px; margin: 0 auto;">
+                <span class="badge bg-light text-dark fw-bold px-3 py-2 rounded-pill mb-3">OFFERTA FORMATIVA</span>
+                <h2 class="fw-bold mb-3 text-white">Percorsi Formativi Su Misura</h2>
+                <p class="text-white-50">Dalla logica di base ai linguaggi di programmazione moderni, guidiamo gli studenti passo dopo passo.</p>
+            </div>
+            <div class="row g-4">
+                
+                <!-- Corso 1 -->
+                <div class="col-md-4">
+                    <div class="card-course">
+                        <div>
+                            <span class="course-badge" style="background-color: #ecfdf5; color: #15803d;">Età 8-12 Anni</span>
+                            <div class="icon-box"><i class="fa-solid fa-gamepad"></i></div>
+                            <h4 class="fw-bold mb-3">Scratch & Logica di Gioco</h4>
+                            <p class="text-muted small mb-4">I concetti fondamentali di algoritmi, variabili e cicli applicati alla creazione di videogiochi e animazioni interattive.</p>
+                        </div>
+                        <a href="#contact" class="btn-outline-custom text-center w-100">Info Corso</a>
+                    </div>
+                </div>
+
+                <!-- Corso 2 -->
+                <div class="col-md-4">
+                    <div class="card-course">
+                        <div>
+                            <span class="course-badge" style="background-color: #f3e8ff; color: #7c3aed;">Età 13-17 Anni</span>
+                            <div class="icon-box" style="background-color: #d9f99d; color: #3f6212;"><i class="fa-solid fa-laptop-code"></i></div>
+                            <h4 class="fw-bold mb-3">Web Development Starter</h4>
+                            <p class="text-muted small mb-4">Costruzione di veri siti web reattivi utilizzando HTML5, CSS3, Bootstrap e le prime basi di JavaScript.</p>
+                        </div>
+                        <a href="#contact" class="btn-outline-custom text-center w-100">Info Corso</a>
+                    </div>
+                </div>
+
+                <!-- Corso 3 -->
+                <div class="col-md-4">
+                    <div class="card-course">
+                        <div>
+                            <span class="course-badge" style="background-color: #fef3c7; color: #b45309;">Avanzato</span>
+                            <div class="icon-box" style="background-color: #f3e8ff; color: #7c3aed;"><i class="fa-solid fa-brain"></i></div>
+                            <h4 class="fw-bold mb-3">Python & Algoritmi AI</h4>
+                            <p class="text-muted small mb-4">Introduzione alla sintassi di Python, risoluzione di problemi complessi e primi passi nel mondo dei dati e dell'IA.</p>
+                        </div>
+                        <a href="#contact" class="btn-outline-custom text-center w-100">Info Corso</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Metodo Didattico -->
+    <section id="method" class="section-padding" style="background-color: var(--surface-color);">
+        <div class="container">
+            <div class="row align-items-stretch g-4">
+                
+                <!-- Colonna Sinistra: Card Lezione Prova con Immagine Ottimizzata -->
+                <div class="col-lg-6">
+                    <div class="promo-trial-card text-center">
+                        <div class="promo-trial-img-wrapper">
+                            <img src="./img/prenota.jpg" alt="Laboratorio Didattico di Coding" class="promo-trial-img">
+                        </div>
+                        <div class="promo-trial-body">
+                            <div>
+                                <h3 class="fw-bold mb-2 text-white fs-4">Prenota una Lezione Prova</h3>
+                                <p class="text-white-50 small mb-0">Fai sperimentare ai ragazzi l'emozione di scrivere la loro prima riga di codice in un ambiente stimolante.</p>
+                            </div>
+                            <a href="#contact" class="btn-lime-custom w-100">Prenota la Prova Gratuita <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Colonna Destra: Metodo e Feature Boxes -->
+                <div class="col-lg-6 d-flex flex-column justify-content-between">
+                    <div>
+                        <h2 class="fw-bold mb-2">Un approccio pratico, moderno e stimolante</h2>
+                        <p class="text-muted small mb-3">Trasformiamo la complessità del codice in conoscenza accessibile. Accompagniamo i ragazzi con un metodo basato su:</p>
+                    </div>
+                    
+                    <div class="d-flex flex-column gap-2">
+                        <div class="feature-box d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-puzzle-piece fa-2x" style="color: var(--primary-purple);"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Learning by Doing</h6>
+                                <p class="text-muted small mb-0">Esperienze pratiche e coinvolgenti in progetti reali.</p>
+                            </div>
+                        </div>
+                        <div class="feature-box d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-users fa-2x" style="color: #10b981;"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Piccoli Gruppi & Mentorship</h6>
+                                <p class="text-muted small mb-0">Classi a numero chiuso per un affiancamento costante.</p>
+                            </div>
+                        </div>
+                        <div class="feature-box d-flex align-items-center gap-3">
+                            <i class="fa-solid fa-rocket fa-2x" style="color: var(--primary-purple);"></i>
+                            <div>
+                                <h6 class="fw-bold mb-1">Crescita Personale</h6>
+                                <p class="text-muted small mb-0">Sviluppo di problem solving e lavoro di squadra.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Storie di Successo (Background Verde Evidenziatore) -->
+    <section id="success" class="section-lime-bg">
+        <div class="container">
+            <div class="text-center mb-5" style="max-width: 600px; margin: 0 auto;">
+                <span class="badge bg-success bg-opacity-10 text-success fw-bold px-3 py-2 rounded-pill mb-2">Risultati Concreti</span>
+                <h2 class="fw-bold mb-3 text-dark">Cosa dicono i nostri giovani innovatori</h2>
+                <p class="text-muted">Le esperienze di chi ha trasformato la curiosità per la tecnologia in progetti reali.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="text-warning mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-secondary small mb-4">"Ho iniziato senza sapere nulla di programmazione e in pochi mesi ho creato il mio primo videogioco interattivo con Scratch. Fantastico!"</p>
+                        <h6 class="fw-bold text-dark mb-0">Matteo, 11 anni</h6>
+                        <span class="text-muted small">Corso Game Logic</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="text-warning mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-secondary small mb-4">"Le lezioni sono super interattive e i docenti spiegano tutto in modo semplice. Ora so come si costruisce un vero sito web da zero."</p>
+                        <h6 class="fw-bold text-dark mb-0">Sofia, 14 anni</h6>
+                        <span class="text-muted small">Corso Web Development</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="text-warning mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-secondary small mb-4">"Approccio laboratoriale eccellente. Veder lavorare i ragazzi con passione e logica è la dimostrazione della validità del metodo."</p>
+                        <h6 class="fw-bold text-dark mb-0">Genitore di Lorenzo</h6>
+                        <span class="text-muted small">Corso Python & AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione FAQ (Domande Frequenti) -->
+    <section id="faq" class="section-padding" style="background-color: var(--surface-color);">
+        <div class="container" style="max-width: 800px;">
+            <div class="text-center mb-4">
+                <h2 class="fw-bold mb-3">Domande Frequenti</h2>
+                <p class="text-muted">Risposte rapide alle curiosità più comuni di studenti e genitori.</p>
+            </div>
+            <div class="accordion accordion-flush" id="faqAccordion">
+                
+                <div class="accordion-item border-0 mb-3 rounded-3 overflow-hidden shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Servono competenze pregresse per iscriversi?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            Assolutamente no. I nostri percorsi base partono dai concetti fondamentali della logica di programmazione, guidando gli studenti passo dopo passo con un approccio pratico e accessibile.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-0 mb-3 rounded-3 overflow-hidden shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Quale attrezzatura è richiesta per partecipare?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            È sufficiente un normale computer (Windows, Mac o Linux) dotato di connessione a Internet e di un browser web aggiornato. Tutti i software utilizzati durante i corsi sono gratuiti e open-source.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item border-0 mb-3 rounded-3 overflow-hidden shadow-sm">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            Come si svolgono le lezioni di prova?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted small">
+                            La lezione di prova è un laboratorio pratico di 45 minuti in cui i ragazzi realizzano il loro primo piccolo progetto interattivo insieme a un nostro Mentor, senza alcun vincolo di iscrizione.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Lavora Con Noi / Diventa Mentor -->
+    <section id="careers" class="section-padding bg-white">
+        <div class="container">
+            <div class="careers-box">
+                <div class="row g-0 align-items-center">
+                    <div class="col-lg-7 p-4 p-md-5">
+                        <span class="badge text-white fw-bold px-3 py-2 rounded-pill mb-3" style="background-color: var(--primary-purple);">Unisciti al Team</span>
+                        <h2 class="display-6 fw-bold mb-3 text-dark">Sei uno Sviluppatore o un Educatore Tech?</h2>
+                        <p class="text-muted mb-4" style="font-size: 1.05rem; line-height: 1.6;">
+                            Siamo sempre alla ricerca di Mentor appassionati di programmazione e didattica digitale pronti a guidare e ispirare le nuove generazioni.
+                        </p>
+                        <a href="mailto:segreto.daniele1989@libero.it?subject=Candidatura%20Mentor%20NextGen%20Coders" class="btn-purple-custom"><i class="fa-solid fa-briefcase me-2"></i> Invia la tua Candidatura</a>
+                    </div>
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <div class="careers-img-container">
+                            <img src="./img/ed_tech.jpg" alt="Educatori e Mentor Tech al lavoro">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Contatti / Iscrizione -->
+    <section id="contact" class="section-padding" style="background-color: var(--surface-color);">
+        <div class="container text-center" style="max-width: 600px;">
+            <h2 class="fw-bold mb-3">Investi nel Futuro Digitale</h2>
+            <p class="text-muted mb-4">Hai domande sui percorsi o desideri maggiori dettagli sulle prossime classi in partenza? Scrivici direttamente.</p>
+            <a href="mailto:segreto.daniele1989@libero.it" class="btn-purple-custom"><i class="fa-solid fa-envelope me-2"></i> Contatta la Direzione Didattica</a>
+        </div>
+    </section>
+
+    <!-- Footer Viola Pieno con Copyright Personalizzato -->
+    <footer class="footer-custom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="fw-bold text-white">NextGen Coders</span> — Formazione e innovazione digitale per le nuove generazioni.
+                </div>
+                <div class="col-md-6 text-center text-md-end text-white-50">
+                    <small>&copy; 2026 Daniele Segreto. Tutti i diritti riservati.</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script Gestione Navigazione ed Evidenziazione Voce Attiva (ScrollSpy) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.navbar-custom .nav-link');
+            const sections = document.querySelectorAll('header[id], section[id]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-25% 0px -65% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${currentId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+</body>
+</html>

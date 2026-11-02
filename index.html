@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniele Segreto | Frontend Developer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome per le icone generali -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Devicon per i loghi ufficiali delle tecnologie -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!-- File CSS Esterno -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+    <!-- Menu Fisso in Alto -->
+    <header>
+        <a href="#about-me" class="logo glitch-target" data-text="Daniele Segreto">Daniele <span>Segreto</span></a>
+        
+        <!-- Pulsante Hamburger per Mobile -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Apri menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#about-me" class="glitch-target" data-text="Profilo">Profilo</a></li>
+                <li><a href="#projects" class="glitch-target" data-text="Progetti">Progetti</a></li>
+                <li><a href="#experience" class="glitch-target" data-text="Esperienze & Formazione">Esperienze & Formazione</a></li>
+                <li><a href="#contact" class="glitch-target" data-text="Contatti">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Sezione 1: Profilo con Foto in Bianco e Nero Fisso -->
+    <section id="about-me">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-img-container">
+            <div class="photo-frame">
+                <!-- Foto pulita in Bianco e Nero -->
+                <img src="./img/Daniele-Segreto.JPG" alt="Daniele Segreto" class="photo-single">
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="glitch-target" data-text="Daniele Segreto">Daniele Segreto</h1>
+            <h2><span id="typed-text"></span><span class="typing-cursor"></span></h2>
+            <p>Specializzato nella creazione di interfacce web reattive, moderne e curate nei dettagli. Trasformo concept di design in codice pulito, performante e orientato all'esperienza utente.</p>
+            
+            <div class="tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Bootstrap</span>
+                <span class="tech-badge">jQuery</span>
+                <span class="tech-badge">React</span>
+            </div>
+            
+            <a href="#contact" class="btn">Mettiamoci in contatto <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+    
+    <!-- Sezione Sponsor / Tech Stack Scorrevole -->
+    <div class="tech-ticker-section">
+        <div class="ticker-container">
+            <div class="ticker-track">
+                <!-- Primo blocco di tecnologie -->
+                <div class="ticker-item"><i class="devicon-html5-plain"></i> HTML5</div>
+                <div class="ticker-item"><i class="devicon-css3-plain"></i> CSS3</div>
+                <div class="ticker-item"><i class="devicon-javascript-plain"></i> JavaScript</div>
+                <div class="ticker-item"><i class="devicon-bootstrap-plain"></i> Bootstrap</div>
+                <div class="ticker-item"><i class="devicon-jquery-plain"></i> jQuery</div>
+                <div class="ticker-item"><i class="devicon-react-original"></i> React</div>
+                <div class="ticker-item"><i class="devicon-git-plain"></i> Git</div>
+                <div class="ticker-item"><i class="devicon-github-original"></i> GitHub</div>
+                <div class="ticker-item"><i class="devicon-npm-original-wordmark"></i> npm</div>
+                <div class="ticker-item"><i class="devicon-vscode-plain"></i> VS Code</div>
+                <div class="ticker-item">
+                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> UI/UX Design
+                </div>
+                
+                <!-- Secondo blocco duplicato per loop continuo perfetto -->
+                <div class="ticker-item"><i class="devicon-html5-plain"></i> HTML5</div>
+                <div class="ticker-item"><i class="devicon-css3-plain"></i> CSS3</div>
+                <div class="ticker-item"><i class="devicon-javascript-plain"></i> JavaScript</div>
+                <div class="ticker-item"><i class="devicon-bootstrap-plain"></i> Bootstrap</div>
+                <div class="ticker-item"><i class="devicon-jquery-plain"></i> jQuery</div>
+                <div class="ticker-item"><i class="devicon-react-original"></i> React</div>
+                <div class="ticker-item"><i class="devicon-git-plain"></i> Git</div>
+                <div class="ticker-item"><i class="devicon-github-original"></i> GitHub</div>
+                <div class="ticker-item"><i class="devicon-npm-original-wordmark"></i> npm</div>
+                <div class="ticker-item"><i class="devicon-vscode-plain"></i> VS Code</div>
+                <div class="ticker-item">
+                    <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> UI/UX Design
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sezione 2: Progetti con Effetto Spotlight e Immagini in B&W -->
+    <section id="projects">
+        <h2 class="section-title">I miei <span>Progetti</span></h2>
+        <div class="projects-grid" id="projects-grid">
+            
+            <!-- Progetto 1: Citizen Science Lab -->
+            <div class="project-card">
+                <div class="project-img-container">
+                    <img src="./img/citizen-science.jpg" alt="Citizen Science Lab">
+                </div>
+                <div class="project-info">
+                    <span class="project-status">Scienza Aperta & Citizen Science</span>
+                    <h3 style="margin-top: 0.4rem;">Citizen Science Lab</h3>
+                    <p>Piattaforma scientifica e divulgativa per l'analisi dati e la classificazione in open research. Include terminale interattivo ed effetto ticker partner.</p>
+                </div>
+                <a href="./projects/citizen-science/index.html" target="_blank" class="btn" style="margin-top: 1.5rem; align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.9rem;">Visita il Sito <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            
+            <!-- Progetto 2: NextGen Coders (Scuola di Coding EdTech) -->
+            <div class="project-card">
+                <div class="project-img-container">
+                    <img src="./img/code-school.jpg" alt="NextGen Coders">
+                </div>
+                <div class="project-info">
+                    <span class="project-status">EdTech & Programmazione Giovanile</span>
+                    <h3 style="margin-top: 0.4rem;">NextGen Coders</h3>
+                    <p>Scuola di coding e pensiero computazionale per le nuove generazioni. Dotata di percorsi formativi interattivi, sezioni FAQ, testimonianze e area mentor.</p>
+                </div>
+                <a href="./projects/code-school/index.html" target="_blank" class="btn" style="margin-top: 1.5rem; align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.9rem;">Visita il Sito <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            
+            <!-- Progetto 3: Klask World Hub (Epic Magnetic Battle) -->
+            <div class="project-card">
+                <div class="project-img-container">
+                    <img src="./img/klask.png" alt="Klask World Hub">
+                </div>
+                <div class="project-info">
+                    <span class="project-status">Sport Magnetico & Tornei</span>
+                    <h3 style="margin-top: 0.4rem;">Klask World Hub</h3>
+                    <p>Piattaforma ufficiale dedicata allo sport da tavolo magnetico, con focus sul creatore Mikkel Bertelsen, le regole di gioco e il circuito del World Championship.</p>
+                </div>
+                <a href="./projects/klask-hub/index.html" target="_blank" class="btn" style="margin-top: 1.5rem; align-self: flex-start; padding: 0.5rem 1rem; font-size: 0.9rem;">Visita il Sito <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Sezione 3: Esperienze e Formazione -->
+    <section id="experience">
+        <h2 class="section-title">Esperienze & <span>Formazione</span></h2>
+        <div class="experience-container">
+            <div class="timeline-block">
+                <h3>Esperienze Lavorative & Ricerca</h3>
+                
+                <div class="timeline-item">
+                    <h4>Software & Front-End Developer</h4>
+                    <span>InEmbryo / Consorzio EHT</span>
+                    <p>Sviluppo di interfacce web responsive con HTML, CSS, Bootstrap, JavaScript, jQuery e Angular. Integrazione backend in PHP, Laravel e MySQL con controllo versione Git/GitHub.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Citizen Scientist & Data Classifier</h4>
+                    <span>Zooniverse / NASA Citizen Science</span>
+                    <p>Attività di ricerca aperta e indipendente, analisi dati, pattern recognition e validazione scientifica per iniziative di ricerca globale.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>IT Trainer & Programming Instructor</h4>
+                    <span>Euroform</span>
+                    <p>Insegnamento di HTML, CSS, Bootstrap, JavaScript e concetti introduttivi di intelligenza artificiale.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>IT Trainer</h4>
+                    <span>CIRS Onlus, Global Professional School, Associazione CARPAN</span>
+                    <p>Docenza in informatica operativa, navigazione web, utilizzo della posta elettronica e applicazioni per ufficio.</p>
+                </div>
+            </div>
+            
+            <div class="timeline-block">
+                <h3>Formazione & Certificazioni</h3>
+                
+                <div class="timeline-item">
+                    <h4>Full Stack Web Developer</h4>
+                    <span>Aulab Hackademy</span>
+                    <p>Percorso intensivo di programmazione e sviluppo web full stack.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Scrum Master Accredited Certification™</h4>
+                    <span>Metodologie Agile</span>
+                    <p>Competenze certificate nella gestione e coordinamento dei progetti con approccio Agile e Scrum.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Psicologia dell'Apprendimento</h4>
+                    <span>Università degli Studi di Napoli Federico II (Federica Web Learning)</span>
+                    <p>Approfondimento dei processi cognitivi, metodologie didattiche e dinamiche dell'apprendimento.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Corsi di Specializzazione Online</h4>
+                    <span>Harvard Online & Piattaforme Accreditate</span>
+                    <p>Aggiornamento continuo su metodologie informatiche avanzate e best practices dello sviluppo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sezione 4: Contatti -->
+    <section id="contact">
+        <h2 class="section-title">Contatti</h2>
+        <div class="contact-content">
+            <p>Per collaborazioni, richieste di informazioni o per visionare il percorso professionale completo, può fare riferimento ai canali sottostanti.</p>
+            <div class="contact-links">
+                <a href="mailto:segreto.daniele1989@libero.it" class="contact-link" title="segreto.daniele1989@libero.it"><i class="fa-solid fa-envelope"></i> E-mail</a>
+                <a href="https://linkedin.com/in/danielesegreto" target="_blank" class="contact-link" title="LinkedIn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a href="https://github.com/daniele-segreto" target="_blank" class="contact-link" title="GitHub"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Daniele Segreto. Tutti i diritti riservati.</p>
+    </footer>
+    
+    <!-- File JS Esterno -->
+    <script src="./js/script.js"></script>
+</body>
+</html>
